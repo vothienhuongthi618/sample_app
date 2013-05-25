@@ -105,4 +105,15 @@ describe User do
     end
   end
 
+  describe "email downcasing before saving" do
+    let(:user_email_before) { "HeLL0@GMaIL.COm" } 
+    it "try saving the email" do
+      @user.email = user_email_before
+      @user.save
+      @user.email.should == user_email_before.downcase
+    end
+
+  end
+
+
 end
