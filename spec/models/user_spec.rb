@@ -27,9 +27,12 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
+  it { should respond_to(:posts) }
+  it { should respond_to(:feed) }
 
   it { should be_valid }
   it { should_not be_admin }
+
 
   describe "with admin attribute set to 'true'" do
     before do
@@ -124,12 +127,41 @@ describe User do
       @user.save
       @user.email.should == user_email_before.downcase
     end
-
   end
 
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "post associations" do
+
+    before { @user.save }
+    let!(:older_post) do 
+      FactoryGirl.create(:post, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_post) do
+      FactoryGirl.create(:post, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right posts in the right order" do
+      @user.posts.should == [newer_post, older_post]
+    end
+    it "should destroy associated posts" do
+      posts = @user.posts.dup
+      @user.destroy
+      posts.should_not be_empty
+      posts.each do |post|
+        Post.find_by_id(post.id).should be_nil
+      end
+    end
+    describe "status" do
+  
+      its(:feed) { should include(newer_post) }
+      its(:feed) { should include(older_post) }
+
+    end
+
   end
 
 end

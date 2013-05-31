@@ -9,4 +9,11 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :post do
+    body "This is the first post."
+    state 2
+    title "First Post"
+    user
+  end
 end
