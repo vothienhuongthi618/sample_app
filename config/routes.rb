@@ -1,16 +1,17 @@
 SampleApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :posts, only: [:create, :destroy]
+  resources :posts
 
   match '/', to: 'static_pages#home', as: 'root'
 
-  match '/help',    to: 'static_pages#help',    as: 'help'
-  match '/about',   to: 'static_pages#about',   as: 'about'
-  match '/contact', to: 'static_pages#contact', as: 'contact'
-  match '/signup',  to: 'users#new',            as: 'signup',   via: 'get'
-  match '/signin',  to: 'sessions#new',         as: 'signin',   via: 'get'
-  match '/signout', to: 'sessions#destroy',     as: 'signout',  via: 'delete'
+  match '/help',      to: 'static_pages#help',    as: 'help'
+  match '/about',     to: 'static_pages#about',   as: 'about'
+  match '/contact',   to: 'static_pages#contact', as: 'contact'
+  match '/signup',    to: 'users#new',            as: 'signup',   via: 'get'
+  match '/signin',    to: 'sessions#new',         as: 'signin',   via: 'get'
+  match '/signout',   to: 'sessions#destroy',     as: 'signout',  via: 'delete'
+  match '/edit_post', to: 'posts#edit',           as: 'editpost'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

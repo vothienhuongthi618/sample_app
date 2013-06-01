@@ -17,7 +17,20 @@ describe "PostPages" do
 			end
 		end
 	end
+	describe "post update" do
+		before { FactoryGirl.create(:post, user: user) }
 
+		describe "as correct user" do
+			before do
+			  visit root_path
+			  click_link "edit" 
+			end
+
+			describe "should go to the update page" do
+			    it { should have_selector('h1',text: 'Edit post') }
+			end
+		end
+	end
 	describe "post creation" do 
 		before { visit root_path }
 
