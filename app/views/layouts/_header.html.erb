@@ -7,6 +7,22 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
+
+          <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Posts <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Published" %></li>
+                <li><%= link_to "Completed" %></li>
+                <li><%= link_to "Drafts" %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Tossed" %>
+                </li>
+              </ul>
+            </li>
+
             <li><%= link_to "Users", users_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -21,9 +37,13 @@
                 </li>
               </ul>
             </li>
+
           <% else %>
+
             <li><%= link_to "Sign in", signin_path %></li>
+
           <% end %>
+
         </ul>
       </nav>
     </div>
