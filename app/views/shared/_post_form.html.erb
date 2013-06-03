@@ -5,4 +5,5 @@
 		<%= f.text_area :title, placeholder: "title" %>
 	</div>
 	<%= f.text_area :body, placeholder: "compost new post..." %>
+	<%= f.select :state, [["publish", 2],["complete", 1],["draft", 0]] %>
 </div>

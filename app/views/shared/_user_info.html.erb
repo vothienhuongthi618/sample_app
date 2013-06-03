@@ -5,8 +5,5 @@
 	<%= current_user.name %>
 </h1>
 <span>
-	<%= link_to "view my profile", current_user %>
-</span>
-<span>
-	<%= pluralize(current_user.posts.count, "post") %>
+	<%= pluralize(current_user.posts.where(:state => 2).count, "post") %>
 </span>

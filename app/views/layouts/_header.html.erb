@@ -13,12 +13,13 @@
                 Posts <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Published" %></li>
-                <li><%= link_to "Completed" %></li>
-                <li><%= link_to "Drafts" %></li>
+                <li><%= link_to "All", posts_path %></li>
+                <li><%= link_to "Published", posts_path(:state => {:state => 2}) %></li>
+                <li><%= link_to "Completed", posts_path(:state => {:state => 1}) %></li>
+                <li><%= link_to "Drafts", posts_path(:state => {:state => 0}) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Tossed" %>
+                  <%= link_to "Tossed", posts_path(:state => {:state => 3}) %>
                 </li>
               </ul>
             </li>
@@ -29,7 +30,7 @@
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Profile", posts_path(:state => {:state => 2}) %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>

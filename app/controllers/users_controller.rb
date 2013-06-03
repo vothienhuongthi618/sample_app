@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   before_filter :admin_user,     only: :destroy
 
   def show
-  	@user = User.find(params[:id])
-    @posts = @user.posts.paginate(page: params[:page])
+    @user = User.find(params[:id])
+    @posts = @user.posts.where(:state => 2).paginate(page: params[:page])
   end
 
   def index
@@ -13,18 +13,18 @@ class UsersController < ApplicationController
   end
   
   def new
-  	@user = User.new
+    @user = User.new
   end
 
   def create
-  	@user = User.new(params[:user])
-  	if @user.save
+    @user = User.new(params[:user])
+    if @user.save
       sign_in @user
-  		flash[:success] = "Welcome to the Sample App!"
-  		redirect_to @user
-  	else
-  		render 'new'
-  	end
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
   def edit 

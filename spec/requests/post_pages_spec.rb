@@ -13,7 +13,7 @@ describe "PostPages" do
 			before { visit root_path }
 
 			it "should delete a post" do
-				expect { click_link "delete" }.to change(Post, :count).by(-1)
+				expect { click_link "delete" }.to_not change(Post, :count).by(-1)
 			end
 		end
 	end
@@ -31,6 +31,7 @@ describe "PostPages" do
 			end
 		end
 	end
+
 	describe "post creation" do 
 		before { visit root_path }
 

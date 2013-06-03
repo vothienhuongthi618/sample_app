@@ -3,6 +3,8 @@ class PostsController < ApplicationController
 	before_filter :correct_user,   only: :destroy
 
 	def index
+		@state = params[:state] || {}
+		@posts = Post.where(@state).paginate(page: params[:page])
 	end 
 
 	def show
@@ -45,11 +47,16 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		@post.destroy
+		@post.update_attributes(state: 3)
 		redirect_to root_url
 	end
 
 	private
+		def correct_user
+			@post = current_user.posts.find_by_id(params[:id])
+			redirect_to root_url if @post.nil?
+		end
+
 		def correct_user
 			@post = current_user.posts.find_by_id(params[:id])
 			redirect_to root_url if @post.nil?
