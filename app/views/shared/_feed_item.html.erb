@@ -4,6 +4,8 @@
 		<div>
 			<span class="body"><%= feed_item.body %></span>
 		</div>
+		  <b>Tags:</b>
+		  <%= join_tags(feed_item) %>
 	</div>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(feed_item.created_at) %> ago.

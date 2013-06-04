@@ -1,9 +1,9 @@
 <a href="<%= user_path(current_user) %>">
 	<%= gravatar_for current_user, size: 52 %>
 </a>
-<h1>
+<h3>
 	<%= current_user.name %>
-</h1>
+</h3>
 <span>
 	<%= pluralize(current_user.posts.where(:state => 2).count, "post") %>
 </span>

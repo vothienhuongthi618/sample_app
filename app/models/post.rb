@@ -1,7 +1,12 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :state, :title
+  attr_accessible :body, :state, :title, :tags_attributes
   belongs_to :user
 
+  has_many :tags, dependent: :destroy
+
+  accepts_nested_attributes_for :tags, :allow_destroy => :true,
+    :reject_if => proc { |attrs| attrs.all? { |k,v| v.blank? } }
+    
   validates :user_id, presence: true
   validates :body, presence: true
   validates :title, presence: true, length: { maximum: 140 }
@@ -13,6 +18,5 @@ class Post < ActiveRecord::Base
 	COMPLETE_STATE = 1
 	PUBLISH_STATE = 2
 	TOSS_STATE = 3
-
 
 end

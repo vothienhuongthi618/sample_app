@@ -5,5 +5,9 @@
 		<%= f.text_area :title, placeholder: "title" %>
 	</div>
 	<%= f.text_area :body, placeholder: "compost new post..." %>
+	<h2>Tags</h2>
+	<%= render :partial => 'tags/form',
+			   :locals => {:form => f} %>
+   </div>
 	<%= f.select :state, [["publish", 2],["complete", 1],["draft", 0]] %>
 </div>

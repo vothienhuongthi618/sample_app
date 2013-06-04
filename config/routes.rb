@@ -4,6 +4,7 @@ SampleApp::Application.routes.draw do
   resources :posts
 
   match '/', to: 'static_pages#home', as: 'root'
+ 
 
   match '/help',      to: 'static_pages#help',    as: 'help'
   match '/about',     to: 'static_pages#about',   as: 'about'

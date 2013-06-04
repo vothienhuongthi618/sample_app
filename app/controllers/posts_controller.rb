@@ -51,6 +51,7 @@ class PostsController < ApplicationController
 		redirect_to root_url
 	end
 
+
 	private
 		def correct_user
 			@post = current_user.posts.find_by_id(params[:id])
