@@ -14,6 +14,7 @@ FactoryGirl.define do
     body "This is the first post."
     state 2
     title "First Post"
+    permalink "First-Post"
     user
   end
 end

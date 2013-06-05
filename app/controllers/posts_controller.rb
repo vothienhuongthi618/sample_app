@@ -1,6 +1,6 @@
 class PostsController < ApplicationController 
 	before_filter :signed_in_user, only: [:create, :destroy, :update]
-	before_filter :correct_user,   only: :destroy
+	before_filter :correct_user,   only: [:index, :destroy]
 
 	def index
 		@state = params[:state] || {}
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 	end 
 
 	def show
-	  @post = Post.find(params[:id])
+	  @post = Post.find_by_permalink(params[:id])
 	 
 	  respond_to do |format|
 	    format.html  # show.html.erb
@@ -27,11 +27,11 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
+		@post = Post.find_by_permalink(params[:id])
 	end
 
 	def update
-	  @post = Post.find(params[:id])
+	  @post = Post.find_by_permalink(params[:id])
  
 	  respond_to do |format|
 	    if @post.update_attributes(params[:post])
@@ -51,15 +51,14 @@ class PostsController < ApplicationController
 		redirect_to root_url
 	end
 
-
 	private
 		def correct_user
-			@post = current_user.posts.find_by_id(params[:id])
+			@post = current_user.posts.find_by_permalink(params[:id])
 			redirect_to root_url if @post.nil?
 		end
 
 		def correct_user
-			@post = current_user.posts.find_by_id(params[:id])
+			@post = current_user.posts.find_by_permalink(params[:id])
 			redirect_to root_url if @post.nil?
 		end
 end

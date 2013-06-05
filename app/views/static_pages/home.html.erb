@@ -1,4 +1,5 @@
 <% if signed_in? %>
+<section class="indent-1">
   <div class="row">
     <aside class="span4">
       <section>
@@ -12,11 +13,12 @@
         <% end %>
       </section>
     </aside>
-    <section class="sidebar">
+    <section>
       <h3>Post Feed</h3>
       <%= render 'shared/feed' %>
     </section>
-  </div>  
+  </div>
+</section>  
 <% else %>
   <div class="center hero-unit">
     <h1>Welcome to the Sample App</h1>
