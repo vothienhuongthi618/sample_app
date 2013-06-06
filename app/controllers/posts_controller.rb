@@ -1,6 +1,6 @@
 class PostsController < ApplicationController 
 	before_filter :signed_in_user, only: [:create, :destroy, :update]
-	before_filter :correct_user,   only: [:index, :destroy]
+	before_filter :correct_user,   only: :destroy
 
 	def index
 		@state = params[:state] || {}

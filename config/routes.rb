@@ -14,6 +14,7 @@ SampleApp::Application.routes.draw do
   match '/signout',   to: 'sessions#destroy',     as: 'signout',  via: 'delete'
   match '/edit_post', to: 'posts#edit',           as: 'editpost'
 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

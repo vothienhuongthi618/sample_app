@@ -5,5 +5,5 @@
 	<%= current_user.name %>
 </h3>
 <span>
-	<%= pluralize(current_user.posts.where(:state => 2).count, "post") %>
+	<%= pluralize(current_user.posts.where(:state => 2).count, "published post") %>
 </span>
