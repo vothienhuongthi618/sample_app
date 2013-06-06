@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
 	def index
 		@state = params[:state] || {}
-		@posts = Post.where(@state).paginate(page: params[:page])
+		@posts = current_user.posts.where(@state).paginate(page: params[:page])
 	end 
 
 	def show
@@ -57,8 +57,4 @@ class PostsController < ApplicationController
 			redirect_to root_url if @post.nil?
 		end
 
-		def correct_user
-			@post = current_user.posts.find_by_permalink(params[:id])
-			redirect_to root_url if @post.nil?
-		end
 end
